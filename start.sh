@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 app.py
+exec gunicorn app:app --bind 0.0.0.0:$PORT

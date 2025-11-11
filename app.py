@@ -1,7 +1,14 @@
 from flask import Flask
+import os
+
 app = Flask(__name__)
+
 @app.route("/")
 def home():
- return "Hello from Cloud PaaS using Render!"
+    return "Hello from Cloud PaaS using Render!"
+
 if __name__ == "__main__":
- app.run()
+    # Render sets PORT environment variable
+    port = int(os.environ.get("PORT", 5000))
+    # Bind to 0.0.0.0 so the container is reachable from outside
+    app.run(host="0.0.0.0", port=port)
